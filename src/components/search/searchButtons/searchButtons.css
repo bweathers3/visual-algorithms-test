@@ -27,14 +27,14 @@
 }
 
 .button-size {
-  height: 75%;
+  height: 65%;
   font-size: 15px;
   padding: 1%;
 }
 
 .linear-search-button, .binary-search-button, .breadth-first-search-button, .depth-first-search-button {
   background-color: #0066ff;
-  width: 20%; /* updated from 30% */
+  width: 17%; /* updated from 30% */
   color: white;
   border-radius: 5px;
   margin-left: 0.5%;
@@ -69,9 +69,6 @@
   .button-size {
     font-size: 10px;
     padding: 0.5%;
-  }
-  .linear-search-button, .binary-search-button {
-    width: 30%;
   }
 }
 
