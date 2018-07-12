@@ -13,29 +13,30 @@ export function randomlyGenerateArray(size, maxNumber, sorted=true) {
 // build max heap tree from random array
 const {floor} = Math;
 
-export function buildMaxHeap(array, maxHeapComparator = maxHeapAscendantAB) {
+export function buildMaxHeap(array, compare = maxHeapAscendantAB) {
   const {floor} = Math;
 	const count = array.length;
 	let end = count - 1;
 
-	maxHeapify(array, maxHeapComparator);
-	return array;
+	maxHeapify(array, compare);
+  return array;
+
 }
 
     function maxHeapAscendantAB(a, b) {
       return a > b ? 1 : ( a < b ? -1 : 0 ); // if a > b then return 1 else return -1 or 0
     }
 
-    function maxHeapify(array, maxHeapComparator) {
+    function maxHeapify(array, compare) {
 	    const count = array.length;
 	    let start = floor((count - 2) / 2);
 	    while (start >= 0) {
-		    heapShiftDown(array, start, count - 1, maxHeapComparator);
+		    heapShiftDown(array, start, count - 1, compare);
 		    start = start - 1;
 	    }
     }
 
-    function heapShiftDown(array, start, end, maxHeapComparator) {
+    function heapShiftDown(array, start, end, compare) {
 	    let root = start;
 
 	    while (root * 2 + 1 <= end) {
@@ -43,18 +44,17 @@ export function buildMaxHeap(array, maxHeapComparator = maxHeapAscendantAB) {
 		    const rChild = lChild + 1;
 		    let swap = root;
 
-		    if (maxHeapComparator(array[swap], array[lChild]) < 0) {
+		    if (compare(array[swap], array[lChild]) < 0) {
 			    swap = lChild;
 		    }
-		    if (rChild <= end && maxHeapComparator(array[swap], array[rChild]) < 0) {
+		    if (rChild <= end && compare(array[swap], array[rChild]) < 0) {
 			    swap = rChild;
 		    }
 		    if (swap === root) {
 			    return;
 		    }
-
-		    maxHeapSwapElems(array, root, swap);
-		    root = swap;
+        maxHeapSwapElems(array, root, swap);
+  	    root = swap;
 	    }
     }
 
@@ -64,6 +64,7 @@ export function buildMaxHeap(array, maxHeapComparator = maxHeapAscendantAB) {
 	    array[b] = tmp;
     }
 
+// end bulid heap tree
 export function setUpHeapSearchArray(searchArray, maxHeapSearchArray) {
   var stepArray = [7,
                 34, 40,
@@ -89,7 +90,6 @@ export function setUpTestMaxHeapArray() {
                 75, 76, 77, 78, 79, 80, 81, 82, 83];
 
   var testMaxHeapArray = [];
-
   for (var i = 15; i < 24; i++) {
     testMaxHeapArray.push(stepArray[i]);
   }
@@ -121,4 +121,29 @@ export function setUpDepthFirstTestMaxHeapArray() {
     testMaxHeapArray.push(stepArray[i]);
   }
   return testMaxHeapArray;
+}
+
+
+//################### start sort
+export function step2HeapSort(step2Array, compare = maxHeapAscendantAB) {
+	const count = step2Array.length;
+	let end = count - 1;
+
+	maxHeapify(step2Array, compare);
+	return step2Array;
+}
+
+//################### start final sort to array
+
+export function step3HeapSort(step3Array, compare = maxHeapAscendantAB) {
+	const count = step3Array.length;
+	let end = count - 1;
+	maxHeapify(step3Array, compare);
+
+	while (end > 0) {
+		maxHeapSwapElems(step3Array, end, 0);
+		end = end - 1;
+		heapShiftDown(step3Array, 0, end, compare);
+	}
+	return step3Array;
 }
