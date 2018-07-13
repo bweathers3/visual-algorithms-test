@@ -1,7 +1,7 @@
 .play-pause-area {
   text-align: center;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  margin-top: 3%; /* changed from 1% */
+  margin-bottom: 2%; /* changed from 1% */
 }
 
 .play, .pause {
